@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "43530436064",
+    "firebase_url": "https://colmilloappandroid.firebaseio.com",
+    "project_id": "colmilloappandroid",
+    "storage_bucket": "colmilloappandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43530436064:android:1e790fb40df07d1c",
+        "android_client_info": {
+          "package_name": "com.example.colmilloapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43530436064-kf77cqgf5k6ebuhu4kujmoclsdoojptk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.colmilloapp",
+            "certificate_hash": "d997b4c2eb90bc1602aff93d3cbf22d88350257c"
+          }
+        },
+        {
+          "client_id": "43530436064-u8203r26dfhhq3p19tenck9aisuc6fba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkau-tBO1NK8tX34sY_C7R3WFUjT4K_vE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43530436064-u8203r26dfhhq3p19tenck9aisuc6fba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
