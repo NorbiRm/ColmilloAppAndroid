@@ -24,6 +24,7 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
@@ -32,11 +33,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        progressBar = findViewById(R.id.login_progress)
         email_sign_in_button.setOnClickListener{
             doLogin()
         }
@@ -53,14 +54,18 @@ class LoginActivity : AppCompatActivity() {
         {
             Toast.makeText(this, "Por favor ingresar Contraseña", Toast.LENGTH_SHORT).show()
         }
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
-            if(!it.isSuccessful) return@addOnCompleteListener
-            Toast.makeText(applicationContext, "id: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }.addOnFailureListener {
-            Toast.makeText(applicationContext, "id: ${it.message}", Toast.LENGTH_LONG).show()
+        else
+        {
+            progressBar.visibility = View.VISIBLE
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
+                if(!it.isSuccessful) return@addOnCompleteListener
+                Toast.makeText(applicationContext, "id: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }.addOnFailureListener {
+                Toast.makeText(applicationContext, "id: ${it.message}", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
