@@ -36,13 +36,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        progressBar = findViewById(R.id.login_progress)
-        email_sign_in_button.setOnClickListener{
-            doLogin()
-        }
+        setContentView(R.layout.activity_login)
+        //progressBar = findViewById(R.id.login_progress)
+
+
     }
-    private fun doLogin(){
+    public fun doLogin(){
         val email = email.text.toString()
         val password = password.text.toString()
 
@@ -56,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         }
         else
         {
-            progressBar.visibility = View.VISIBLE
+            //progressBar.visibility = View.VISIBLE
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
                 if(!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(applicationContext, "id: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
