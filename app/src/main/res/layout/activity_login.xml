@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Inicia Sesión"
-                    android:textStyle="bold" android:onClick="doLogin"/>
+                    android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>
