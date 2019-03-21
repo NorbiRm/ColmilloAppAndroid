@@ -38,10 +38,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         progressBar = findViewById(R.id.login_progress)
+
         email_sign_in_button.setOnClickListener{
             doLogin()
         }
-
+        forgotPass.setOnClickListener{
+            ForgotMyPass()
+        }
 
     }
     private fun doLogin(){
@@ -69,5 +72,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "id: ${it.message}", Toast.LENGTH_LONG).show()
             }
         }
+    }
+    private fun ForgotMyPass(){
+        val intent = Intent(this, ForgotPassActivity::class.java)
+        startActivity(intent)
     }
 }
