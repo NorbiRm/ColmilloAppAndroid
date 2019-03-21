@@ -20,7 +20,7 @@ class ForgotPassActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_pass_word)
         email = findViewById(R.id.EmailRestablish)
-        //auth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         progressBar = findViewById(R.id.progressBarForget)
 
     }
@@ -28,10 +28,10 @@ class ForgotPassActivity : AppCompatActivity() {
         val temail = email.text.toString()
         if(!TextUtils.isEmpty(temail))
         {
+            progressBarForget.visibility=View.VISIBLE
             auth.sendPasswordResetEmail(temail).addOnCompleteListener(this){
-                    task->
+                task->
                 if(task.isSuccessful){
-                    progressBarForget.visibility=View.VISIBLE
                     Toast.makeText(this, "Enviando Correo...", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, LoginActivity::class.java))
                 }
