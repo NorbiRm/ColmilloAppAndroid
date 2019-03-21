@@ -59,16 +59,13 @@ class LoginActivity : AppCompatActivity() {
             progressBar.visibility = View.VISIBLE
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
                 if(!it.isSuccessful) return@addOnCompleteListener
-                Toast.makeText(applicationContext, "Iniciando sesion", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "id: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }.addOnFailureListener {
-                Toast.makeText(applicationContext, "Error al iniciar sesion", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "id: ${it.message}", Toast.LENGTH_LONG).show()
             }
         }
-    }
-    private fun forget(){
-        startActivity(Intent(this, ForgotPassActivity::class.java))
     }
 }
