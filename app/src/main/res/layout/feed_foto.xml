@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:orientation="vertical"
-              android:layout_marginTop="5dp" android:padding="8dp" android:layout_height="200dp">
+              android:layout_marginTop="5dp" android:padding="8dp" android:layout_height="300dp">
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -11,23 +11,34 @@
                 android:text="Usuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/usuario" android:layout_weight="1"
-                android:textSize="24sp"/>
-        <TextView
-                android:text="Likes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/likes" android:layout_weight="1"
-                android:textSize="14sp"/>
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@android:drawable/btn_star_big_off"
-                android:id="@+id/imageView3" android:layout_weight="1"/>
+                android:textSize="24sp"
+                android:textColor="@color/colorDarkerGrey5"
+        />
+        <android.support.constraint.ConstraintLayout
+                android:layout_weight="1" android:layout_height="match_parent">
+
+            <TextView
+                    android:text="Likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/likes" android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarkerGrey5"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView5"/>
+            <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="20dp" app:srcCompat="@drawable/like" android:id="@+id/imageView5"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="4dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
     <ImageView
-            android:layout_width="411dp"
-            android:layout_height="127dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-            android:id="@+id/imageView2" android:scaleType="center"/>
+            android:layout_width="match_parent"
+            android:layout_height="177dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:id="@+id/imageView2" android:scaleType="centerCrop"/>
     <TextView
             android:text="Descripion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/descripcion" android:textSize="14sp"/>
+            android:layout_height="52dp" android:id="@+id/descripcion" android:textSize="16sp" android:textColor="@color/colorDarkerGrey5"/>
 </LinearLayout>
