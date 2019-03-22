@@ -1,34 +1,15 @@
 package com.example.colmilloapp
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.annotation.TargetApi
-import android.content.pm.PackageManager
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.app.LoaderManager.LoaderCallbacks
-import android.content.CursorLoader
-import android.content.Loader
-import android.database.Cursor
-import android.net.Uri
-import android.os.AsyncTask
-import android.os.Build
-import android.os.Bundle
-import android.provider.ContactsContract
-import android.text.TextUtils
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
-import android.widget.TextView
-
-import java.util.ArrayList
-import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-
 import kotlinx.android.synthetic.main.activity_login.*
+
+import com.example.colmilloapp.Cursos
 
 
 class LoginActivity : AppCompatActivity() {
@@ -65,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
                 if(!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(applicationContext, "id: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Cursos::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }.addOnFailureListener {
