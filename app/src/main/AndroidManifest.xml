@@ -34,7 +34,8 @@
         </activity>
         <activity android:name=".CursosCardActivity">
         </activity>
-        <activity android:name=".Cursos">
+        <activity android:name=".Cursos"
+                    android:label="Concursos">
         </activity>
         <activity android:name=".HomeActivity">
 

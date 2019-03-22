@@ -61,7 +61,7 @@
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:singleLine="true" android:text="Contraseña"/>
+                        android:singleLine="true" android:textColor="@color/colorWhite"/>
 
             </android.support.design.widget.TextInputLayout>
 
