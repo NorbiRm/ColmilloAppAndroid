@@ -10,18 +10,24 @@
         <TextView
                 android:text="Usuario"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/usuario" android:layout_weight="1"/>
+                android:layout_height="wrap_content" android:id="@+id/usuario" android:layout_weight="1"
+                android:textSize="24sp"/>
         <TextView
                 android:text="Likes"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/likes" android:layout_weight="1"/>
+                android:layout_height="wrap_content" android:id="@+id/likes" android:layout_weight="1"
+                android:textSize="14sp"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@android:drawable/btn_star_big_off"
+                android:id="@+id/imageView3" android:layout_weight="1"/>
     </LinearLayout>
+    <ImageView
+            android:layout_width="411dp"
+            android:layout_height="127dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:id="@+id/imageView2" android:scaleType="center"/>
     <TextView
             android:text="Descripion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/descripcion"/>
-    <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars[13]"
-            android:id="@+id/foto" android:scaleType="centerCrop" android:contentDescription="null"/>
+            android:layout_height="wrap_content" android:id="@+id/descripcion" android:textSize="14sp"/>
 </LinearLayout>
