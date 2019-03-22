@@ -15,10 +15,10 @@ class CursosCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cursos_card)
 
         val cursoCard = intent.getSerializableExtra("pokemon") as CursoCard
-        loadPokemon(cursoCard)
+        loadCurso(cursoCard)
     }
 
-    private fun loadPokemon(cursoCard: CursoCard) {
+    private fun loadCurso(cursoCard: CursoCard) {
 
         val name: TextView
 

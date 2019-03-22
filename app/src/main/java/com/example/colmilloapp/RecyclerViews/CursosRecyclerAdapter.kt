@@ -39,7 +39,7 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CursoRecordHolder {
         val view: View
         val inflater = LayoutInflater.from(context)
-        view = inflater.inflate(R.layout.curso_card_item, viewGroup, false)
+        view = inflater.inflate(R.layout.activity_cursos_card, viewGroup, false)
 
         val CursoRecordHolder = CursoRecordHolder(view)
 
