@@ -12,15 +12,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
+
+
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.request.RequestOptions
 import com.example.colmilloapp.CursosCardActivity
 import com.example.colmilloapp.R
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 
 
 import com.example.colmilloapp.Models.CursoCard
+import com.google.firebase.storage.FirebaseStorage
 
-class CursosRecyclerAdapter(private val context: Context, private val cards: List<CursoCard>) :
+
+
+class CursosRecyclerAdapter(private val context: Context, private val cards: List<CursoCard?>) :
     RecyclerView.Adapter<CursosRecyclerAdapter.CursoRecordHolder>() {
     internal var options: RequestOptions
 
@@ -38,7 +45,7 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
 
         CursoRecordHolder.itemView.setOnClickListener {
             val CursoCard = cards[CursoRecordHolder.adapterPosition]
-            Toast.makeText(context, CursoCard.nombre, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, CursoCard!!.nombre, Toast.LENGTH_SHORT).show()
             val it = Intent(context, CursosCardActivity::class.java)
             it.putExtra("CursoCard", CursoCard)
 
@@ -49,11 +56,21 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
     }
 
     override fun onBindViewHolder(CursoRecordHolder: CursoRecordHolder, i: Int) {
-        CursoRecordHolder.nombre.setText(cards[i].nombre)
+        CursoRecordHolder.nombre.setText(cards[i]!!.nombre)
 //        CursoRecordHolder.id.setText(cards[i].getId())
 //        CursoRecordHolder.artist.setText(cards[i].getArtist())
 
-        Glide.with(context).load(cards[i].image).apply(options).into(CursoRecordHolder.image)
+        // Reference to an image file in Cloud Storage
+        val storageReference = FirebaseStorage.getInstance().reference
+
+// ImageView in your Activity
+
+
+// Download directly from StorageReference using Glide
+// (See MyAppGlideModule for Loader registration)
+
+        Glide.with(context).load(cards[i]!!.image).apply(options).into(CursoRecordHolder.image);
+        //Glide.with(context).load(cards[i]!!.image).apply(options).into(CursoRecordHolder.image)
     }
 
     override fun getItemCount(): Int {
