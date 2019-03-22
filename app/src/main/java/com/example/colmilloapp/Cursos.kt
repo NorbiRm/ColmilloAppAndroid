@@ -77,35 +77,7 @@ class Cursos : AppCompatActivity() {
 
 
         Log.i("Curso","done firebase")
-//        request = JsonObjectRequest(Request.Method.GET, JSON_URL, null,
-//            Response.Listener { response ->
-//                try {
-//                    val cardsJson = response.getJSONArray("cards")
-//                    var jsonObject: JSONObject? = null
-//
-//                    for (i in 0 until cardsJson.length()) {
-//
-//                        jsonObject = cardsJson.getJSONObject(i)
-//                        val cursoCard = CursoCard()
-//                        cursoCard.id = (jsonObject!!.getString("id"))
-//                        cursoCard.nombre = (jsonObject.getString("name"))
-//                        cursoCard.image = (jsonObject.getString("imageUrl"))
-//
-//                        cards!!.add(cursoCard)
-//                    }
-//                } catch (jsonException: JSONException) {
-//                    jsonException.printStackTrace()
-//                }
-//
 
-//            },
-//            Response.ErrorListener {
-//                Toast.makeText(applicationContext, "Error de server", Toast.LENGTH_LONG)
-//                    .show()
-//            })
-//
-//        requestQueue = Volley.newRequestQueue(this@Cursos)
-//        requestQueue!!.add(request!!)
     }
 
     private fun setRecyclerView(cursoCards: MutableList<CursoCard?>) {

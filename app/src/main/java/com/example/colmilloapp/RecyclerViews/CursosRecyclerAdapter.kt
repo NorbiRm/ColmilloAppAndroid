@@ -32,7 +32,6 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
     internal var options: RequestOptions
 
     init {
-
         options = RequestOptions().centerCrop().placeholder(R.drawable.load_card).error(R.drawable.load_card)
     }
 
@@ -56,21 +55,10 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
     }
 
     override fun onBindViewHolder(CursoRecordHolder: CursoRecordHolder, i: Int) {
+
         CursoRecordHolder.nombre.setText(cards[i]!!.nombre)
-//        CursoRecordHolder.id.setText(cards[i].getId())
-//        CursoRecordHolder.artist.setText(cards[i].getArtist())
-
-        // Reference to an image file in Cloud Storage
-        val storageReference = FirebaseStorage.getInstance().reference
-
-// ImageView in your Activity
-
-
-// Download directly from StorageReference using Glide
-// (See MyAppGlideModule for Loader registration)
 
         Glide.with(context).load(cards[i]!!.image).apply(options).into(CursoRecordHolder.image);
-        //Glide.with(context).load(cards[i]!!.image).apply(options).into(CursoRecordHolder.image)
     }
 
     override fun getItemCount(): Int {
@@ -79,10 +67,7 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
 
     class CursoRecordHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-//        internal var id: TextView
         internal var nombre: TextView
-//        internal var fechaInicio: TextView
-//        internal var fechaFin: ImageView
         internal var image: ImageView
 
         init {
