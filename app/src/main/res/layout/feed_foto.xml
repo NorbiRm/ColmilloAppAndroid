@@ -13,7 +13,9 @@
                 android:layout_height="wrap_content" android:id="@+id/usuario" android:layout_weight="1"
                 android:textSize="24sp"
                 android:textColor="@color/colorDarkerGrey5"
-        />
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"/>
         <android.support.constraint.ConstraintLayout
                 android:layout_weight="1" android:layout_height="match_parent" android:layout_width="wrap_content">
 
@@ -37,8 +39,16 @@
             android:layout_width="match_parent"
             android:layout_height="177dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:id="@+id/imageView2" android:scaleType="centerCrop"/>
-    <TextView
-            android:text="Descripion"
+    <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp" android:id="@+id/descripcion" android:textSize="16sp" android:textColor="@color/colorDarkerGrey5"/>
+            android:layout_height="match_parent">
+
+        <TextView
+                android:text="Descripion"
+                android:layout_width="344dp"
+                android:layout_height="52dp" android:id="@+id/descripcion" android:textSize="16sp"
+                android:textColor="@color/colorDarkerGrey5" android:layout_marginTop="4dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 </LinearLayout>
