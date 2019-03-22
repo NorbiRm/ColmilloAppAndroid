@@ -19,5 +19,5 @@
     <color name="colorLightGrey3">#333</color>
     <color name="colorLightGrey4">#222</color>
     <color name="colorLightGrey5">#111</color>
-    <color name="colorBlack">#000</color>
+    <color name="colorBlack">#000000</color>
 </resources>
