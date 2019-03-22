@@ -38,7 +38,7 @@ class HomeAdapter(private var context: Context, private val feedFotos: List<Foto
     }
 
     inner class UserFotoViewHolder(item : View) : RecyclerView.ViewHolder(item){
-        internal var image = item.findViewById<ImageView>(R.id.foto)
+        internal var image = item.findViewById<ImageView>(R.id.imageView2)
         internal var user = item.findViewById<TextView>(R.id.usuario)
         internal var likes = item.findViewById<TextView>(R.id.likes)
         internal var descripcion = item.findViewById<TextView>(R.id.descripcion)
