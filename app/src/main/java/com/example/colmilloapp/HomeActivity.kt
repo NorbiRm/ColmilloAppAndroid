@@ -2,14 +2,9 @@ package com.example.colmilloapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.example.colmilloapp.Models.Foto
-import com.example.colmilloapp.R
 import com.example.colmilloapp.RecyclerViews.HomeAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
