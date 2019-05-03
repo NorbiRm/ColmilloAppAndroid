@@ -2,8 +2,11 @@ package com.example.colmilloapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.colmilloapp.Models.CursoCard
@@ -14,7 +17,7 @@ class CursosCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cursos_card)
 
-        val cursoCard = intent.getSerializableExtra("pokemon") as CursoCard
+        val cursoCard = intent.getSerializableExtra("CursoCard") as CursoCard
         loadCurso(cursoCard)
     }
 
@@ -31,6 +34,8 @@ class CursosCardActivity : AppCompatActivity() {
         name.setText(cursoCard.nombre)
 
         Glide.with(this).load(cursoCard.image).apply(options).into(image)
+
+
     }
 
 }

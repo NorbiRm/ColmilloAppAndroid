@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "43530436064-lk9iemsctm3c7ujqm14k101rppuavcna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.colmilloapp",
+            "certificate_hash": "b4789da98768605f24b24b44da6db353227843dd"
+          }
+        },
+        {
+          "client_id": "43530436064-oqi2d1kf1e2034ccelvb5f0jkh8pkflu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.colmilloapp",
+            "certificate_hash": "106b00ead9b388df083585c9ba72da428b5136c9"
+          }
+        },
+        {
           "client_id": "43530436064-kf77cqgf5k6ebuhu4kujmoclsdoojptk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -33,20 +49,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "43530436064-u8203r26dfhhq3p19tenck9aisuc6fba.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
