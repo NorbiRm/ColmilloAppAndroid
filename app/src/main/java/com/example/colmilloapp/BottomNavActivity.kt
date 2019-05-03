@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.support.v7.widget.RecyclerView
+import com.example.colmilloapp.Models.User
 import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
 class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -15,8 +16,17 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         when(p0.itemId)
         {
             R.id.navigation_home -> fragment = HomeActivity()
-            R.id.navigation_courses-> fragment = HomeActivity()
-            R.id.navigation_profile-> fragment = HomeActivity()
+            R.id.navigation_courses-> {
+                fragment = HomeActivity()
+            }
+            R.id.navigation_profile-> {
+                var basura = ArrayList<String>()
+                basura.add("Norbi es Puto")
+                val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
+                val bundle = Bundle()
+                bundle.putParcelable("user", user)
+                fragment = UserProfileActivity()
+            }
         }
         return loadFragment(fragment)
     }

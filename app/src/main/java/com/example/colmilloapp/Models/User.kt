@@ -1,11 +1,12 @@
 package com.example.colmilloapp.Models
 
 import android.media.Image
+import android.support.design.internal.ParcelableSparseArray
 import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
-class User: Serializable {
+class User: Serializable, ParcelableSparseArray {
     var id:String=""
     var nombre:String = ""
     var imageProfile:String? = null
