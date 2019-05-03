@@ -18,6 +18,7 @@ import android.widget.TextView
 import com.example.colmilloapp.Models.Foto
 import com.example.colmilloapp.R
 import com.example.colmilloapp.RecyclerViews.HomeAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -68,6 +69,8 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
     fun jsonRequest(){
         //var mDatabase = FirebaseDatabase.getInstance().reference
         var mReference = FirebaseDatabase.getInstance().getReference("Fotos")
+
+
 
         val nListener = object: ValueEventListener{
 

@@ -15,8 +15,6 @@ import java.util.*
 
 class Cursos : AppCompatActivity() {
 
-
-
     private var request: JsonObjectRequest? = null
     private var requestQueue: RequestQueue? = null
     private var cards: MutableList<CursoCard?>? = null
