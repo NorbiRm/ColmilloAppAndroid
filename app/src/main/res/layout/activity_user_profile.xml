@@ -7,22 +7,32 @@
         android:layout_height="match_parent"
         tools:context=".UserProfileActivity">
 
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="348dp"
+            android:layout_height="297dp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/recyclerViewFotosUser"
+            app:layout_constraintHorizontal_bias="0.507"/>
     <LinearLayout
             android:orientation="vertical"
-            android:layout_width="402dp"
-            android:layout_height="111dp"
+            android:layout_width="347dp"
+            android:layout_height="369dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/imagePortada"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewFotosUser">
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewFotosUser" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+                android:layout_width="401dp"
+                android:layout_height="273dp" tools:srcCompat="@tools:sample/backgrounds/scenic[1]"
+                android:id="@+id/imagePortada" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout" android:contentDescription="TODO"/>
         <TextView
                 android:text="Nombre"
                 android:layout_width="match_parent"
                 android:layout_height="39dp" android:id="@+id/nombreUser" android:textSize="18sp"/>
-        <TextView
-                android:text="Atributos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="14sp"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -37,17 +47,4 @@
                     android:layout_height="match_parent" android:id="@+id/followingUser" android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
-    <ImageView
-            android:layout_width="401dp"
-            android:layout_height="273dp" tools:srcCompat="@tools:sample/backgrounds/scenic[1]"
-            android:id="@+id/imagePortada" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout" android:contentDescription="TODO"/>
-    <android.support.v7.widget.RecyclerView
-            android:layout_width="395dp"
-            android:layout_height="337dp"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/recyclerViewFotosUser"/>
 </android.support.constraint.ConstraintLayout>
