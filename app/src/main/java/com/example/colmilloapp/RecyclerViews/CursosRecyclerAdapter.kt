@@ -27,7 +27,7 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 
-class CursosRecyclerAdapter(private val context: Context, private val cards: List<CursoCard?>) :
+class CursosRecyclerAdapter(private var context: Context, private val cards: List<CursoCard?>) :
     RecyclerView.Adapter<CursosRecyclerAdapter.CursoRecordHolder>() {
     internal var options: RequestOptions
 
@@ -36,9 +36,9 @@ class CursosRecyclerAdapter(private val context: Context, private val cards: Lis
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CursoRecordHolder {
-        val view: View
-        val inflater = LayoutInflater.from(context)
-        view = inflater.inflate(R.layout.activity_cursos_card, viewGroup, false)
+
+        context = viewGroup.context
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.activity_cursos_card,viewGroup,false)
 
         val CursoRecordHolder = CursoRecordHolder(view)
 
