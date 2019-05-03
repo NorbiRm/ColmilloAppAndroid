@@ -31,58 +31,61 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
     private var feedFotos: MutableList<Foto?>? = null
     private var param1: String? = null
     private var param2: String? = null
+
     private var listener: UserProfileActivity.OnFragmentInteractionListener? = null
-    private var view1: View? = null
+
     private var image_portada: ImageView? = null
     private var nombreUser : TextView? = null
     private var followersUser : TextView? = null
     private var following : TextView? = null
     private var user_profile: User? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        //setContentView(R.layout.activity_user_profile)
-        //var stuff = arguments?.getParcelable<User>("user") as User
-        //val user_profile = stuff as User
-
-
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        this.view1 = LayoutInflater.from(container?.context).inflate(R.layout.activity_user_profile, container, false)
-        this.image_portada =  this.view1!!.findViewById<View>(R.id.imagePortada) as ImageView
-        this.nombreUser = this.view1!!.findViewById<View>(R.id.nombreUser) as TextView
-        this.followersUser = this.view1!!.findViewById<View>(R.id.followersUser) as TextView
-        this.following = this.view1!!.findViewById<View>(R.id.followingUser) as TextView
+        return inflater.inflate(R.layout.activity_user_profile,container,false)
+    }
 
-        var stuff = arguments
-        this.user_profile = stuff?.getParcelable("user") as User
-        loadProfile()
-        Log.i("usuario", this.user_profile.toString())
-       /* var basura = ArrayList<String>()
-        basura.add("Norbi es Puto")
-        val user = User("3", "pedro","https://es.wikipedia.org/wiki/Canis_lupus#/media/File:Canis_lupus_265b.jpg", "CDMX", "Mexico", basura, basura)
-        loadProfile(user)*/
-        return inflater.inflate(R.layout.activity_user_profile, null)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        loadProfile(view)
     }
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
-    fun loadProfile(){
-        //Log.i("stuff", view!!.findViewById<ImageView>(R.id.imagePortada).toString()+" es esto")
+    fun loadProfile(view:View){
 
+
+        Log.i("UserProfile", view.findViewById<ImageView>(R.id.imagePortada).toString())
+        this.image_portada =  view.findViewById<View>(R.id.imagePortada) as ImageView
+        this.nombreUser = view.findViewById<View>(R.id.nombreUser) as TextView
+        this.followersUser = view.findViewById<View>(R.id.followersUser) as TextView
+        this.following = view.findViewById<View>(R.id.followingUser) as TextView
+
+        var stuff = arguments
+        this.user_profile = stuff?.getParcelable("user") as User
+
+        Log.i("UserProfile", this.user_profile.toString())
         val options = RequestOptions().centerCrop().placeholder(R.drawable.load_card).error(R.drawable.load_card)
-        Log.i("objetoUser",user_profile!!.imageProfile)
+
+        Log.i("UserProfile",user_profile!!.imageProfile)
         Glide.with(this).load(user_profile!!.imageProfile).apply(options).into(image_portada!!)
-        Log.i("objetoUser",user_profile!!.nombre)
+
+        Log.i("UserProfile",user_profile!!.nombre)
         this.nombreUser!!.setText(user_profile!!.nombre)
-        Log.i("objetoUser",user_profile!!.followers.size.toString())
+
+        Log.i("UserProfile",user_profile!!.followers.size.toString())
         this.followersUser!!.setText(user_profile!!.followers.size.toString())
-        Log.i("objetoUser",user_profile!!.following.size.toString())
+
+        Log.i("UserProfile",user_profile!!.following.size.toString())
         this.following!!.setText(user_profile!!.following.size.toString())
 
     }

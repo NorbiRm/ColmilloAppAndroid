@@ -50,8 +50,7 @@ class Cursos :  Fragment(),  BottomNavigationView.OnNavigationItemSelectedListen
         }
 
         cards = ArrayList<CursoCard?>()
-        val rv = recyclerViewFeed
-        //rv.setHasFixedSize(true)
+
         jsonrequest()
 
         Log.i("Cursos","Content Set")
