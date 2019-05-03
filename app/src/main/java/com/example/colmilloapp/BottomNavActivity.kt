@@ -24,7 +24,7 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         {
             R.id.navigation_home -> fragment = HomeActivity()
             R.id.navigation_courses-> {
-                fragment = HomeActivity()
+                fragment = Cursos()
             }
             R.id.navigation_profile-> {
                 /*var basura = ArrayList<String>()
