@@ -6,10 +6,17 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.support.v7.widget.RecyclerView
+import android.util.Log
+import com.example.colmilloapp.Models.CursoCard
 import com.example.colmilloapp.Models.User
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
 class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+    private var mDatabase: DatabaseReference? = null
+    private var mMessageReference: DatabaseReference? = null
+    private var usuario = User()
+
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         lateinit var fragment: Fragment
 
@@ -20,11 +27,11 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
                 fragment = HomeActivity()
             }
             R.id.navigation_profile-> {
-                var basura = ArrayList<String>()
-                basura.add("Norbi es Puto")
-                val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
+                /*var basura = ArrayList<String>()
+                basura.add("Norbi es Puto")*/
+                //val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
                 val bundle = Bundle()
-                bundle.putParcelable("user", user)
+                bundle.putParcelable("user", usuario)
                 fragment = UserProfileActivity()
             }
         }
@@ -44,6 +51,49 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         setContentView(R.layout.activity_bottom_nav)
         var navigation: BottomNavigationView = findViewById(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(this)
+
+        usuario = loadProfile()
     }
 
+    fun loadProfile(): User{
+
+        var user=User()
+        mDatabase = FirebaseDatabase.getInstance().reference
+        mMessageReference = FirebaseDatabase.getInstance().getReference("Users")
+
+        val messageListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
+                Log.i("Usuarios",dataSnapshot.childrenCount.toString())
+
+                dataSnapshot.children.forEach {
+                    Log.i("child-user",it.getValue(User::class.java).toString())
+                    if(it.hasChild("id").equals("1")){
+                        Log.i("if","sirve el if id==1 putos")
+
+                    }
+
+                }
+
+
+                Log.i("Usuario","end if firebase")
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Failed to read value
+            }
+        }
+
+        mMessageReference!!.addValueEventListener(messageListener)
+
+
+
+        Log.i("Curso","done firebase")
+
+        return user
+
+    }
 }

@@ -1,11 +1,13 @@
 package com.example.colmilloapp.Models
 
+import android.annotation.SuppressLint
 import android.media.Image
 import android.support.design.internal.ParcelableSparseArray
 import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
+@SuppressLint("RestrictedApi")
 class User: Serializable, ParcelableSparseArray {
     var id:String=""
     var nombre:String = ""
