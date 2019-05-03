@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.colmilloapp">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
@@ -14,10 +13,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
         <activity android:name=".ForgotPassActivity">
         </activity>
-        <activity android:name=".SplashActivity"
-                  android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+                android:name=".SplashActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,12 +35,14 @@
         </activity>
         <activity android:name=".CursosCardActivity">
         </activity>
-        <activity android:name=".Cursos"
-                    android:label="Concursos">
+        <activity
+                android:name=".Cursos"
+                android:label="Concursos">
         </activity>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".BottomNavActivity" android:label="BottomNavActivity">
 
         </activity>
+
     </application>
 
 </manifest>
