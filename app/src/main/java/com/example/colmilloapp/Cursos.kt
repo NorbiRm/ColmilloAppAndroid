@@ -56,10 +56,6 @@ class Cursos :  Fragment(),  BottomNavigationView.OnNavigationItemSelectedListen
 
         Log.i("Cursos","Content Set")
 
-       
-
-
-
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?

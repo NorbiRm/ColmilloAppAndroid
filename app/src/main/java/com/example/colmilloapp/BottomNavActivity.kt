@@ -27,12 +27,7 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
                 fragment = Cursos()
             }
             R.id.navigation_profile-> {
-                /*var basura = ArrayList<String>()
-                basura.add("Norbi es Puto")*/
-                //val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
-                val bundle = Bundle()
-                bundle.putParcelable("user", usuario)
-                fragment = UserProfileActivity()
+                fragment = newInstance()
             }
         }
         return loadFragment(fragment)
@@ -52,10 +47,20 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         var navigation: BottomNavigationView = findViewById(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(this)
 
-        usuario = loadProfile()
+        loadProfile()
     }
 
-    fun loadProfile(): User{
+    fun newInstance(): UserProfileActivity {
+        val f = UserProfileActivity()
+       // val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
+        val bundle = Bundle()
+        bundle.putParcelable("user", usuario)
+        f.setArguments(bundle)
+        return f
+    }
+
+
+    fun loadProfile(){
 
         var user=User()
         mDatabase = FirebaseDatabase.getInstance().reference
@@ -69,10 +74,13 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
                 Log.i("Usuarios",dataSnapshot.childrenCount.toString())
 
                 dataSnapshot.children.forEach {
-                    Log.i("child-user",it.getValue(User::class.java).toString())
-                    if(it.hasChild("id").equals("1")){
+                    //Log.i("child-user",it.getValue(User::class.java).toString())
+                    Log.i("que es it",it.toString())
+                    var userTemp = it.getValue(User::class.java) as User
+                    Log.i("userTemp",userTemp.toString())
+                    if(userTemp.id == "1"){
                         Log.i("if","sirve el if id==1 putos")
-
+                        usuario = userTemp
                     }
 
                 }
@@ -93,7 +101,6 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
 
         Log.i("Curso","done firebase")
 
-        return user
 
     }
 }
