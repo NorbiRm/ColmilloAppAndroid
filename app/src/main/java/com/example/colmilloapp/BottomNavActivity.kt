@@ -22,12 +22,17 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
 
         when(p0.itemId)
         {
-            R.id.navigation_home -> fragment = HomeActivity()
+            R.id.navigation_home -> {
+                fragment = HomeActivity()
+            }
             R.id.navigation_courses-> {
                 fragment = Cursos()
             }
             R.id.navigation_profile-> {
                 fragment = newInstance()
+            }
+            R.id.camera-> {
+                fragment = Camera()
             }
         }
         return loadFragment(fragment)
@@ -58,7 +63,6 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         f.setArguments(bundle)
         return f
     }
-
 
     fun loadProfile(){
 

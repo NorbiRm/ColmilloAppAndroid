@@ -12,8 +12,13 @@
             android:title="Profile"/>
 
     <item
+            android:id="@+id/camera"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Camera"/>
+    <item
             android:id="@+id/navigation_courses"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Courses"/>
+
 
 </menu>
