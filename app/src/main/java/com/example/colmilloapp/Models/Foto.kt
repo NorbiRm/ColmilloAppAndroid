@@ -15,7 +15,7 @@ class Foto(): Serializable {
     var imageURL:String? = null
     var descripcion:String? = null
     var likes:Int = 0
-    var stars: Map<String, Boolean> = HashMap()
+
 
 
     override fun toString(): String {

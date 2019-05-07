@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.colmilloapp.Models.Foto
 import com.example.colmilloapp.R
 import com.google.firebase.auth.FirebaseAuth
@@ -21,18 +19,16 @@ import com.google.firebase.database.ValueEventListener
 import org.w3c.dom.Text
 import java.sql.Time
 import kotlin.concurrent.timer
+import com.firebase.ui.storage.images.FirebaseImageLoader
 
-
-
-
-
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.module.AppGlideModule
 
 
 class HomeAdapter(private var context: Context, private val feedFotos: List<Foto?>):
-
-
-
     RecyclerView.Adapter<HomeAdapter.UserFotoViewHolder>(){
+
     internal var options: RequestOptions = RequestOptions().centerCrop().placeholder(R.drawable.load_card).error(R.drawable.load_card)
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UserFotoViewHolder {
@@ -50,6 +46,9 @@ class HomeAdapter(private var context: Context, private val feedFotos: List<Foto
         p0.likes.setText(feedFotos[p1]!!.likes.toString())
         p0.descripcion.setText(feedFotos[p1]!!.descripcion.toString())
         Glide.with(context).load(feedFotos[p1]!!.imageURL).apply(options).into(p0.image)
+
+
+
         var image = p0.image
 
         //Double Tap Logic
