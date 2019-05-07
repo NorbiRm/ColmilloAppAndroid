@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +20,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.colmilloapp.Models.Foto
 import com.example.colmilloapp.Models.User
+import com.example.colmilloapp.RecyclerViews.HomeAdapter
+import com.example.colmilloapp.RecyclerViews.UserFotosAdapter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.feed_foto.*
 
@@ -28,7 +37,7 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-    private var feedFotos: MutableList<Foto?>? = null
+    private var UserProfileFotos : MutableList<Foto?>? = null
     private var param1: String? = null
     private var param2: String? = null
 
@@ -46,6 +55,7 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        UserProfileFotos = ArrayList<Foto?>()
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -63,8 +73,9 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
     }
     fun loadProfile(view:View){
 
-
         Log.i("UserProfile", view.findViewById<ImageView>(R.id.imagePortada).toString())
+
+        jsonRequest()
         this.image_portada =  view.findViewById<View>(R.id.imagePortada) as ImageView
         this.nombreUser = view.findViewById<View>(R.id.nombreUser) as TextView
         this.followersUser = view.findViewById<View>(R.id.followersUser) as TextView
@@ -88,6 +99,40 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
         Log.i("UserProfile",user_profile!!.following.size.toString())
         this.following!!.setText(user_profile!!.following.size.toString())
 
+
+    }
+    fun jsonRequest(){
+        //var mDatabase = FirebaseDatabase.getInstance().reference
+
+        var mReference = FirebaseDatabase.getInstance().getReference("Fotos")
+
+
+        mReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+                Log.i("feedFotos",dataSnapShot.childrenCount.toString())
+
+                dataSnapShot.children.forEach {
+                    var fotoTemp = it.getValue(Foto::class.java) as Foto
+                    if(fotoTemp.idUser == "1") {
+                        Log.i("fotoTemp","caraja")
+                        UserProfileFotos!!.add(fotoTemp)
+                    }
+                }
+                Log.i("feedArray",UserProfileFotos.toString())
+                setRecycleView(UserProfileFotos!!)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // ...
+            }
+        })
+
+    }
+
+    private fun setRecycleView(UserProfileFotos:MutableList<Foto?>){
+        val fotoRecyclerAdapter = UserFotosAdapter(BottomNavActivity(), UserProfileFotos)
+        recyclerViewFotosUser!!.layoutManager = GridLayoutManager(BottomNavActivity(),4)
+        recyclerViewFotosUser!!.adapter = fotoRecyclerAdapter
     }
 
     interface OnFragmentInteractionListener {
