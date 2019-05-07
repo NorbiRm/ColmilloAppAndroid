@@ -59,6 +59,11 @@ class HomeAdapter(private var context: Context, private val feedFotos: List<Foto
                 if(System.currentTimeMillis()-time<=200) {
                     Log.i("IMAGE TAP","DoubleTap from " +feedFotos[p1]!!.idFoto)
                     updateRequest(feedFotos[p1]!!)
+                    var likesT = Integer.parseInt(p0.likes.text.toString())
+
+                    likesT++
+                    p0.likes.setText(likesT.toString())
+
                 }else{
                     time = System.currentTimeMillis()
                 }

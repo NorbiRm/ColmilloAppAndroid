@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_home.*
 
 
+
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedListener{
@@ -71,9 +73,7 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
         var mReference = FirebaseDatabase.getInstance().getReference("Fotos")
 
 
-
-        val nListener = object: ValueEventListener{
-
+        mReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapShot: DataSnapshot) {
                 Log.i("feedFotos",dataSnapShot.childrenCount.toString())
 
@@ -84,10 +84,10 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
                 setRecycleView(feedFotos!!)
             }
 
-            override fun onCancelled(p0: DatabaseError) {
+            override fun onCancelled(databaseError: DatabaseError) {
+                // ...
             }
-        }
-        mReference!!.addValueEventListener(nListener)
+        })
 
     }
     interface OnFragmentInteractionListener {

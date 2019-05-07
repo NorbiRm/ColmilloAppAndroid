@@ -161,7 +161,13 @@ class Camera : Fragment(){
 
             imageView!!.setImageBitmap(thumbnail)
 
+
+
             //uploadFileToServerTask().execute(destination.getAbsolutePath())
         }
+    }
+
+    fun uploadImage(){
+        
     }
 }
