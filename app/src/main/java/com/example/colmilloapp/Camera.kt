@@ -17,9 +17,21 @@ import com.google.android.gms.common.util.IOUtils.toByteArray
 import android.os.Environment.getExternalStorageDirectory
 import android.graphics.Bitmap
 import android.os.Environment
+import android.support.design.widget.TextInputEditText
+import android.support.design.widget.TextInputLayout
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import com.example.colmilloapp.Models.Foto
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.fragment_camera.*
+import org.w3c.dom.Text
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -47,7 +59,12 @@ class Camera : Fragment(){
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
     private var getFotoButton:Button? = null
+    private var subirFotoButton:Button? = null
+    private var fotoDescription:TextInputEditText? = null
     private var imageView:ImageView?=null
+    private var imageFoto:Bitmap?=null
+    private var storage:FirebaseStorage? = null
+    private var database:FirebaseDatabase? = null
 
     //Camera Config
 
@@ -81,10 +98,20 @@ class Camera : Fragment(){
         getFotoButton = view!!.findViewById(R.id.getFoto) as Button
         getFotoButton!!.setOnClickListener{
             getFoto()
-
         }
 
+        subirFotoButton = view!!.findViewById(R.id.upload)
+        subirFotoButton!!.setOnClickListener{
+            uploadImage()
+        }
+
+
         imageView = view!!.findViewById(R.id.imageTakenView) as ImageView
+
+        fotoDescription = view!!.findViewById(R.id.descriptionFoto) as TextInputEditText
+
+        storage = FirebaseStorage.getInstance()
+        database = FirebaseDatabase.getInstance()
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -148,7 +175,7 @@ class Camera : Fragment(){
         if (requestCode == REQUEST_CAMERA) {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             val bytes = ByteArrayOutputStream()
-            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
             val destination = File(getExternalStorageDirectory(), "temp.jpg")
             val fo: FileOutputStream
             try {
@@ -161,13 +188,82 @@ class Camera : Fragment(){
 
             imageView!!.setImageBitmap(thumbnail)
 
-
+            imageFoto = thumbnail
 
             //uploadFileToServerTask().execute(destination.getAbsolutePath())
         }
     }
 
     fun uploadImage(){
-        
+        if (imageFoto!=null){
+            // Create a storage reference from our app
+            val storageRef = storage!!.getReference("uploadedFotos")
+            val time = System.nanoTime()
+            val id = FirebaseAuth.getInstance().uid
+            val imageID = id + time + ".jpg"
+            val imageRef = storageRef.child(imageID)
+
+
+            val bitmap = imageFoto
+            val baos = ByteArrayOutputStream()
+            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+
+            //Upload to firebaseStorage
+            var uploadTask = imageRef.putBytes(data)
+
+
+
+            uploadTask.addOnFailureListener {
+
+            }.addOnSuccessListener {
+
+                imageView!!.setImageBitmap(null)
+                Toast.makeText(super.getContext(),"Foto uploades",Toast.LENGTH_SHORT).show()
+
+
+
+                var foto:Foto = Foto()
+
+                var storageRef = storage!!.getReference("uploadedFotos").child(imageID)
+                var urlImg = ""
+
+                storageRef.getDownloadUrl().addOnSuccessListener(OnSuccessListener() {
+
+                        urlImg = it.toString()
+
+                        foto.likes = 0
+                        foto.imageURL = urlImg
+                        foto.idUser = id.toString()
+                        foto.descripcion = descriptionFoto.text.toString()
+
+                        var fotosRef = database!!.getReference("Fotos")
+
+                        foto.idFoto = fotosRef.push().key.toString()
+
+                        var fotos: MutableList<Foto> = ArrayList<Foto>()
+                        //fotos.add(foto)
+                        fotosRef.child(foto.idFoto).setValue(foto)
+                    
+                        Log.i("ImagesUpload","URL" + urlImg)
+
+                }).addOnFailureListener(OnFailureListener() {
+                    @Override fun onFailure(@NonNull exception:Exception) {
+                        Log.i("ImagesUpload","Fallo URL")
+                    }
+                })
+
+
+            }
+
+
+
+
+
+            }else{
+            Toast.makeText(super.getContext(),"Take a foto first",Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
