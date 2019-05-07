@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.example.colmilloapp.Models.CursoCard
 import com.example.colmilloapp.Models.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
@@ -82,7 +83,7 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
                     Log.i("que es it",it.toString())
                     var userTemp = it.getValue(User::class.java) as User
                     Log.i("userTemp",userTemp.toString())
-                    if(userTemp.id == "1"){
+                    if(userTemp.id == FirebaseAuth.getInstance().uid){
                         Log.i("if","sirve el if id==1 putos")
                         usuario = userTemp
                     }

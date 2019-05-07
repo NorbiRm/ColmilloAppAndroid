@@ -24,15 +24,19 @@ import com.firebase.ui.storage.images.FirebaseImageLoader
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.module.AppGlideModule
+import com.example.colmilloapp.Models.User
 
 
 class HomeAdapter(private var context: Context, private val feedFotos: List<Foto?>):
     RecyclerView.Adapter<HomeAdapter.UserFotoViewHolder>(){
 
+    private var database:FirebaseDatabase? = null
     internal var options: RequestOptions = RequestOptions().centerCrop().placeholder(R.drawable.load_card).error(R.drawable.load_card)
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UserFotoViewHolder {
         context = p0.context
+        database = FirebaseDatabase.getInstance()
+
         val view =  LayoutInflater.from(p0.context).inflate(R.layout.feed_foto, p0, false)
         return UserFotoViewHolder(view)
     }
@@ -42,12 +46,31 @@ class HomeAdapter(private var context: Context, private val feedFotos: List<Foto
     }
 
     override fun onBindViewHolder(p0: UserFotoViewHolder, p1: Int) {
-        p0.user.setText(feedFotos[p1]!!.idUser)
+
+        var mReference = FirebaseDatabase.getInstance().getReference("Users")
+
+        var nombre = ""
+
+        mReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+                Log.i("feedFotos",dataSnapShot.child(feedFotos[p1]!!.idUser).getValue(User::class.java)!!.nombre)
+
+                nombre = dataSnapShot.child(feedFotos[p1]!!.idUser).getValue(User::class.java)!!.nombre
+                p0.user.setText(nombre)
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // ...
+            }
+        })
+
+
+
+
         p0.likes.setText(feedFotos[p1]!!.likes.toString())
         p0.descripcion.setText(feedFotos[p1]!!.descripcion.toString())
         Glide.with(context).load(feedFotos[p1]!!.imageURL).apply(options).into(p0.image)
-
-
 
         var image = p0.image
 

@@ -22,6 +22,7 @@ import com.example.colmilloapp.Models.Foto
 import com.example.colmilloapp.Models.User
 import com.example.colmilloapp.RecyclerViews.HomeAdapter
 import com.example.colmilloapp.RecyclerViews.UserFotosAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -113,7 +114,7 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
 
                 dataSnapShot.children.forEach {
                     var fotoTemp = it.getValue(Foto::class.java) as Foto
-                    if(fotoTemp.idUser == "1") {
+                    if(fotoTemp.idUser == FirebaseAuth.getInstance().uid) {
                         Log.i("fotoTemp","caraja")
                         UserProfileFotos!!.add(fotoTemp)
                     }

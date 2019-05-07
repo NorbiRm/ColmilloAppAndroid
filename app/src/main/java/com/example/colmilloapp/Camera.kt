@@ -245,7 +245,7 @@ class Camera : Fragment(){
                         var fotos: MutableList<Foto> = ArrayList<Foto>()
                         //fotos.add(foto)
                         fotosRef.child(foto.idFoto).setValue(foto)
-                    
+
                         Log.i("ImagesUpload","URL" + urlImg)
 
                 }).addOnFailureListener(OnFailureListener() {
