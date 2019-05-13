@@ -40,7 +40,7 @@
                 android:name=".Cursos"
                 android:label="Concursos">
         </activity>
-        <activity android:name=".BottomNavActivity" android:label="BottomNavActivity">
+        <activity android:name=".BottomNavActivity" android:label="ColmilloApp">
 
         </activity>
 
