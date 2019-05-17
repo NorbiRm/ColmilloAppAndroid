@@ -95,10 +95,10 @@ class UserProfileActivity: Fragment(),  BottomNavigationView.OnNavigationItemSel
         this.nombreUser!!.setText(user_profile!!.nombre)
 
         Log.i("UserProfile",user_profile!!.followers.size.toString())
-        this.followersUser!!.setText(user_profile!!.followers.size.toString())
+        this.followersUser!!.setText("Followers: "+user_profile!!.followers.size.toString())
 
         Log.i("UserProfile",user_profile!!.following.size.toString())
-        this.following!!.setText(user_profile!!.following.size.toString())
+        this.following!!.setText("Following: "+user_profile!!.following.size.toString())
 
 
     }

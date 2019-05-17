@@ -5,22 +5,31 @@ import java.io.Serializable
 import java.util.*
 import com.google.firebase.database.IgnoreExtraProperties
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 @IgnoreExtraProperties
 class CursoCard: Serializable {
-    var id:String=""
-    var nombre:String = ""
-    var fechaInicio:String = ""
-    var fechaFin:String = ""
-    var cupo:Int = 0
-    var image:String? = null
-    var fotos:ArrayList<String>? = null
+    var id: String = ""
+    var nombre: String = ""
+    var fechaInicio: String = ""
+    var fechaFin: String = ""
+    var cupo: Int = 0
+    var image: String? = null
+    var fotos: HashMap<String, String>? = null
 
-    constructor(){
+    constructor() {
     }
 
-    constructor(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String,fotos:ArrayList<String>){
+    constructor(
+        id: String,
+        nombre: String,
+        fechaInicio: String,
+        fechaFin: String,
+        cupo: Int,
+        image: String,
+        fotos: HashMap<String, String>
+    ) {
         this.id = id
         this.nombre = nombre
         this.fechaInicio = fechaInicio
@@ -31,6 +40,6 @@ class CursoCard: Serializable {
     }
 
     override fun toString(): String {
-        return "$id $nombre $fechaInicio $fechaFin $cupo $image"
+        return "$id $nombre $fechaInicio $fechaFin $cupo $image / $fotos"
     }
 }

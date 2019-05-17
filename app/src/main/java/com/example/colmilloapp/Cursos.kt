@@ -83,6 +83,7 @@ class Cursos :  Fragment(),  BottomNavigationView.OnNavigationItemSelectedListen
                 Log.i("Curso",dataSnapshot.childrenCount.toString())
 
                 dataSnapshot.children.forEach {
+                    Log.i("Curso",it.toString())
                     cards!!.add(it.getValue(CursoCard::class.java))
 
                 }
@@ -120,11 +121,7 @@ class Cursos :  Fragment(),  BottomNavigationView.OnNavigationItemSelectedListen
 
     }
 
-    private fun writeNewCurso(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String,fotos:ArrayList<String>) {
-        val user = CursoCard(id,nombre,fechaInicio,fechaFin,cupo,image,fotos)
 
-        mDatabase!!.child("cursos").child(id).setValue(user)
-    }
     companion object {
         /**
          * Use this factory method to create a new instance of

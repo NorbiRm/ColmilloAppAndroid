@@ -29,14 +29,14 @@ class CursosNavBar : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         navigation.setOnNavigationItemSelectedListener(this)
 
         cursoCard = intent.getSerializableExtra("CursoCard") as CursoCard
-        Log.i("CursoNavBar","Curso: "+cursoCard.toString())
-        //loadProfile()
+
+
         //loadFragment(CursoCard())
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         lateinit var fragment: Fragment
-
+        loadCurso(cursoCard!!)
         Log.i("BottomNavBar","Item selected:" + p0.itemId)
 
         when(p0.itemId)
@@ -52,7 +52,10 @@ class CursosNavBar : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
             }
             R.id.fotoCursoFragment-> {
-                //fragment = Cursos()
+                fragment = CameraCurso()
+                val bundle = Bundle()
+                bundle.putSerializable("curso", cursoCard as Serializable)
+                fragment.arguments = bundle
             }
             else ->{
                 //fragment = HomeActivity()
@@ -68,4 +71,28 @@ class CursosNavBar : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return false
     }
+
+    private fun loadCurso(curso: CursoCard){
+        var mReference = FirebaseDatabase.getInstance().getReference("cursos")
+
+        mReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+                Log.i("CursoNavBar","snapshot size:"+dataSnapShot.childrenCount.toString())
+
+                dataSnapShot.children.forEach {
+                    var cursoTemp = it.getValue(CursoCard::class.java) as CursoCard
+                    Log.i("CursoNavBar","cursotemp:"+cursoTemp)
+                    if (cursoTemp.id == curso.id) {
+                        cursoCard = cursoTemp
+                    }
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // ...
+            }
+        })
+    }
+
 }

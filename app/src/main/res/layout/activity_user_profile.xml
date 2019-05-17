@@ -25,7 +25,7 @@
         <TextView
                 android:text="Nombre"
                 android:layout_width="match_parent"
-                android:layout_height="39dp" android:id="@+id/nombreUser" android:textSize="18sp"/>
+                android:layout_height="wrap_content" android:id="@+id/nombreUser" android:textSize="18sp"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

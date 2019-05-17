@@ -48,7 +48,6 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
             param2 = it.getString(ARG_PARAM2)
         }
         feedFotos = ArrayList<Foto?>()
-        val rv = recyclerViewFeed
 
         jsonRequest()
 
@@ -93,8 +92,8 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
      */
     private fun setRecycleView(feedFotos:MutableList<Foto?>){
         val fotoRecyclerAdapter = HomeAdapter(BottomNavActivity(), feedFotos)
-        recyclerViewFeed!!.layoutManager = LinearLayoutManager(BottomNavActivity())
-        recyclerViewFeed!!.adapter = fotoRecyclerAdapter
+        recyclerCursoFotos!!.layoutManager = LinearLayoutManager(BottomNavActivity())
+        recyclerCursoFotos!!.adapter = fotoRecyclerAdapter
     }
 
     companion object
