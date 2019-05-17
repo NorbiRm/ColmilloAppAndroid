@@ -28,7 +28,7 @@ class CursoFeedRecyclerAdapter(private var context: Context, private val feedFot
 
 
         val CursoFeedViewHolder = CursoFeedViewHolder(view)
-        
+
         return CursoFeedViewHolder
 
         }
