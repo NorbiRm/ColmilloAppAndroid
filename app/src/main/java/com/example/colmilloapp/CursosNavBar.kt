@@ -31,12 +31,7 @@ class CursosNavBar : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         cursoCard = intent.getSerializableExtra("CursoCard") as CursoCard
 
         loadCurso(cursoCard!!)
-        lateinit var fragment: Fragment
-        fragment = CursoFeed()
-        val bundle = Bundle()
-        bundle.putSerializable("curso", cursoCard as Serializable)
-        fragment.arguments = bundle
-        loadFragment(fragment)
+
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
