@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="true"/>
 
     <application
             android:allowBackup="true"
@@ -14,7 +17,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
+        <activity android:name=".CursosNavBar">
+        </activity>
         <activity android:name=".ForgotPassActivity">
         </activity>
         <activity
@@ -34,16 +38,11 @@
                 android:name=".MainActivity"
                 android:label="Main">
         </activity>
-        <activity android:name=".CursosCardActivity">
-        </activity>
+        
         <activity
-                android:name=".Cursos"
-                android:label="Concursos">
+                android:name=".BottomNavActivity"
+                android:label="ColmilloApp">
         </activity>
-        <activity android:name=".BottomNavActivity" android:label="ColmilloApp">
-
-        </activity>
-
     </application>
 
 </manifest>

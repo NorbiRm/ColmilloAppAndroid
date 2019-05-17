@@ -15,16 +15,12 @@ import android.widget.Toast
 
 
 import com.bumptech.glide.Glide
-import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.request.RequestOptions
-import com.example.colmilloapp.CursosCardActivity
+import com.example.colmilloapp.CursosNavBar
 import com.example.colmilloapp.R
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 
 
 import com.example.colmilloapp.Models.CursoCard
-import com.google.firebase.storage.FirebaseStorage
-
 
 
 class CursosRecyclerAdapter(private var context: Context, private val cards: List<CursoCard?>) :
@@ -45,7 +41,7 @@ class CursosRecyclerAdapter(private var context: Context, private val cards: Lis
         CursoRecordHolder.itemView.setOnClickListener {
             val CursoCard = cards[CursoRecordHolder.adapterPosition]
             Toast.makeText(context, CursoCard!!.nombre, Toast.LENGTH_SHORT).show()
-            val it = Intent(context, CursosCardActivity::class.java)
+            val it = Intent(context, CursosNavBar::class.java)
             it.putExtra("CursoCard", CursoCard)
 
             context.startActivity(it)
@@ -71,8 +67,8 @@ class CursosRecyclerAdapter(private var context: Context, private val cards: Lis
         internal var image: ImageView
 
         init {
-            nombre = itemView.findViewById(R.id.nombre)
-            image = itemView.findViewById(R.id.image)
+            nombre = itemView.findViewById(R.id.nombreImageFeed)
+            image = itemView.findViewById(R.id.cursoImageFeed)
         }
     }
 

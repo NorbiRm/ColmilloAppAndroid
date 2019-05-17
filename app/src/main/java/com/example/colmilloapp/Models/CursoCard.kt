@@ -4,6 +4,7 @@ import android.media.Image
 import java.io.Serializable
 import java.util.*
 import com.google.firebase.database.IgnoreExtraProperties
+import kotlin.collections.ArrayList
 
 
 @IgnoreExtraProperties
@@ -14,17 +15,19 @@ class CursoCard: Serializable {
     var fechaFin:String = ""
     var cupo:Int = 0
     var image:String? = null
+    var fotos:ArrayList<String>? = null
 
     constructor(){
     }
 
-    constructor(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String){
+    constructor(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String,fotos:ArrayList<String>){
         this.id = id
         this.nombre = nombre
         this.fechaInicio = fechaInicio
         this.fechaFin = fechaFin
         this.cupo = cupo
         this.image = image
+        this.fotos = fotos
     }
 
     override fun toString(): String {

@@ -120,8 +120,8 @@ class Cursos :  Fragment(),  BottomNavigationView.OnNavigationItemSelectedListen
 
     }
 
-    private fun writeNewCurso(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String) {
-        val user = CursoCard(id,nombre,fechaInicio,fechaFin,cupo,image)
+    private fun writeNewCurso(id:String,nombre:String,fechaInicio:String,fechaFin:String,cupo:Int,image:String,fotos:ArrayList<String>) {
+        val user = CursoCard(id,nombre,fechaInicio,fechaFin,cupo,image,fotos)
 
         mDatabase!!.child("cursos").child(id).setValue(user)
     }

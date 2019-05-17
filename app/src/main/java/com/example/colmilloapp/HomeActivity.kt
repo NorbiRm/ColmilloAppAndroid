@@ -49,18 +49,12 @@ class HomeActivity : Fragment(),  BottomNavigationView.OnNavigationItemSelectedL
         }
         feedFotos = ArrayList<Foto?>()
         val rv = recyclerViewFeed
-        //rv.setHasFixedSize(true)
+
         jsonRequest()
 
-        // Aqui irían todos los atributos del perfil
-        //var grid = GridLayoutManager(this, 4)
-        // rv.layoutManager = grid
 
     }
-    /*
 
-        Firebase
-         */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         return inflater.inflate(R.layout.activity_home, null)

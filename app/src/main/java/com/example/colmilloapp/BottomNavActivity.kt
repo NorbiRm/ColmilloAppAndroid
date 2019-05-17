@@ -21,6 +21,8 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         lateinit var fragment: Fragment
 
+        Log.i("BottomNavBar","Item selected:" + p0.itemId)
+
         when(p0.itemId)
         {
             R.id.navigation_home -> {
@@ -34,6 +36,9 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
             }
             R.id.camera-> {
                 fragment = Camera()
+            }
+            else ->{
+                fragment = HomeActivity()
             }
         }
         return loadFragment(fragment)
@@ -54,11 +59,12 @@ class BottomNavActivity : AppCompatActivity(), BottomNavigationView.OnNavigation
         navigation.setOnNavigationItemSelectedListener(this)
 
         loadProfile()
+        loadFragment(HomeActivity())
     }
 
     fun newInstance(): UserProfileActivity {
         val f = UserProfileActivity()
-       // val user = User("3", "pedro","www.caca.com", "CDMX", "Mexico", basura, basura)
+
         val bundle = Bundle()
         bundle.putParcelable("user", usuario)
         f.setArguments(bundle)
